@@ -153,4 +153,10 @@ view: user_daily {
     type: count
     drill_fields: []
   }
+
+  measure: count_user {
+    label: "Number of user in daily table"
+    type: count
+    sql: ${user_id} ;;
+  }
 }

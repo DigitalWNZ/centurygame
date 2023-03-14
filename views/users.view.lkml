@@ -59,7 +59,7 @@ view: users {
   measure: number_of_users {
     description: "Number of users"
     value_format_name: decimal_0
-    type: count_distinct
+    type: count
     sql: ${user_id} ;;
     drill_fields: [first_platform,first_game_version,count]
   }
@@ -68,4 +68,5 @@ view: users {
     type: count
     drill_fields: []
   }
+
 }
