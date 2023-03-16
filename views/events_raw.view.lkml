@@ -58,6 +58,12 @@ view: events_raw {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.utc_date ;;
+    order_by_field: utc_date
+  }
+
+  dimension:str_month  {
+    type: string
+    sql: safe_cast(${utc_month} as string) ;;
   }
 
   measure: count {

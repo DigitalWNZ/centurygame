@@ -44,6 +44,20 @@ view: user_daily {
     sql: ${TABLE}.utc_date ;;
   }
 
+  dimension: df {
+    type: number
+    sql: DATE_DIFF(${user_daily.utc_date}, date('1970-01-01'), DAY);;
+  }
+
+  dimension:str_month  {
+    type: string
+    sql: safe_cast(${utc_month} as string) ;;
+    order_by_field: df
+  }
+
+
+
+
   dimension: retention_days {
     group_label: "Retention"
     description: "Days since first seen (from event date)"
@@ -156,7 +170,8 @@ view: user_daily {
 
   measure: count_user {
     label: "Number of user in daily table"
-    type: count
+    type: count_distinct
     sql: ${user_id} ;;
+    drill_fields: [utc_date,count_user]
   }
 }

@@ -32,6 +32,12 @@ view: users {
     sql: ${TABLE}.first_date ;;
   }
 
+  dimension:str_month  {
+    type: string
+    sql: safe_cast(${first_month} as string) ;;
+  }
+
+
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "First Game Version" in Explore.
