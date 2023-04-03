@@ -26,6 +26,13 @@ persist_with: aftership_user_demo_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
+# Any Users with region_multiple_value contains 'US' can all view the field.
+access_grant: view_category {
+  user_attribute: department_multiple_value
+  allowed_values: ["product","finance"]
+}
+
+
 explore: events_raw {
   join: user_daily {
     type: left_outer
@@ -46,3 +53,12 @@ explore: user_daily {
     relationship: many_to_one
   }
 }
+
+explore: ext_table_from_sheet {
+  access_filter: {
+    field: ext_table_from_sheet.region
+    user_attribute: region_multiple_value
+  }
+}
+
+explore: windowfunnel {}
