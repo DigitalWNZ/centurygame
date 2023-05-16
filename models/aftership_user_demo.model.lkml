@@ -62,3 +62,6 @@ explore: ext_table_from_sheet {
 }
 
 explore: windowfunnel {}
+
+
+explore: creative_label_analysis {}
